@@ -5,7 +5,7 @@ const GET_COMPANY_STATEMENTS = 'stocks-market-trends/stocks/GET_COMPANY_STATEMEN
 const FILTER_COMPANY = 'stocks-market-trends/stocks/FILTER_COMPANY';
 const RESET_STOCK = 'stocks-market-trends/stocks/RESET_STOCK';
 const API_URL = 'https://financialmodelingprep.com/api/v3/';
-const API_KEY = '82a4de9376f4c4d59d47b606435ee1e1';
+const API_KEY = '8b7a7c786c82524206f6568bdebdecec';
 
 const initialState = {
   stockData: [],
@@ -15,3 +15,110 @@ const initialState = {
   loading: false,
   error: null,
 };
+
+export const getCompanyDetails = (payload) => ({
+  type: GET_COMPANY_DETAILS,
+  payload,
+});
+
+export const getCompanyStatements = (payload) => ({
+  type: GET_COMPANY_STATEMENTS,
+  payload,
+});
+
+export const getStockData = (payload) => ({
+  type: GET_STOCK_DATA,
+  payload,
+});
+
+export const filterCompany = (payload) => ({
+  type: FILTER_COMPANY,
+  payload,
+});
+
+export const resetStock = () => ({
+  type: RESET_STOCK,
+});
+
+export const fetchCompanyDetails = (companyId) => async (dispatch) => {
+  try {
+    const response = await fetch(
+      `${API_URL}profile/${companyId}?apikey=${API_KEY}`,
+    );
+    const result = await response.json();
+    dispatch(getCompanyDetails(result));
+  } catch (err) {
+    throw new Error(err);
+  }
+};
+
+export const fetchCompanyStatements = (companyId) => async (dispatch) => {
+  try {
+    const response = await fetch(
+      `${API_URL}income-statement/${companyId}?limit=120&apikey=${API_KEY}`,
+    );
+    const result = await response.json();
+    dispatch(getCompanyStatements(result));
+  } catch (err) {
+    throw new Error(err);
+  }
+};
+
+export const fetchStockData = () => async (dispatch) => {
+  try {
+    const response = await fetch(
+      `${API_URL}stock_market/actives?limit=20&apikey=${API_KEY}`,
+    );
+    const result = await response.json();
+    const data = result.map(
+      ({
+        symbol, name, change, price, changesPercentage,
+      }) => ({
+        id: symbol,
+        change,
+        companyName: name,
+        price,
+        changesPercentage,
+      }),
+    );
+
+    dispatch(getStockData(data));
+  } catch (err) {
+    throw new Error(err);
+  }
+};
+
+//   Reducer
+
+const stockDataReducer = (state = initialState, { type, payload }) => {
+  switch (type) {
+    case GET_COMPANY_DETAILS:
+      return { ...state, details: [...payload] };
+
+    case GET_COMPANY_STATEMENTS:
+      return { ...state, statement: [...payload] };
+
+    case GET_STOCK_DATA:
+      return { ...state, stocksData: [...payload] };
+
+    case RESET_STOCK:
+      return { ...state, statement: [], details: [] };
+
+    case FILTER_COMPANY:
+      if (payload === '') {
+        return { ...state, filtered: [...state.stocksData] };
+      }
+      return {
+        ...state,
+        filtered: [
+          ...state.stocksData.filter(({ companyName }) => companyName
+            .toLowerCase().includes(payload.toLowerCase())),
+        ],
+      };
+
+    default:
+      return state;
+  }
+};
+
+export default stockDataReducer;
