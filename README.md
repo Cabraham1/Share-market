@@ -60,38 +60,33 @@ After you're finished please remove all the comments and instructions!
 
 <!-- PROJECT DESCRIPTION -->
 
-# 📖 [your_project_name] <a name="about-project"></a>
+# 📖 [Share market] <a name="about-project"></a>
 
-> Describe your project in 1 or 2 sentences.
+![Stocks app](./src/assets/Annotation%202023-04-19%20105831.png)
+![Stocks app](./src/assets/Annotation%202023-04-19%20105936.png)
+![Stocks app](./src/assets/Annotation%202023-04-19%20110014.png)
 
-**[your_project__name]** is a...
+**[Share Market]** mobile-focused web application that allows users to check the companies listed on the stock exchange and view their real-time metrics. The app retrieves its data from the Financial Modeling API. It is constructed using technologies such as React, Redux, React-bootstrap, Skeleton Loader, and Recharts.
 
 ## 🛠 Built With <a name="built-with"></a>
+- Major languages (HTML, CSS, JavaScript)
 
-### Tech Stack <a name="tech-stack"></a>
+- Frameworks / Libraries
 
-> Describe the tech stack and include only the relevant sections that apply to your project.
+  ```bash
+  - React (Front end library)
+  - React Testing Library
+  - Jest(for testing)
+  - Git(version control)
+  - ESLint(JavaScript linting)
+  - Stylelint(style linting)
+  ```
 
-<details>
-  <summary>Client</summary>
-  <ul>
-    <li><a href="https://reactjs.org/">React.js</a></li>
-  </ul>
-</details>
+- Technologies used
 
-<details>
-  <summary>Server</summary>
-  <ul>
-    <li><a href="https://expressjs.com/">Express.js</a></li>
-  </ul>
-</details>
-
-<details>
-<summary>Database</summary>
-  <ul>
-    <li><a href="https://www.postgresql.org/">PostgreSQL</a></li>
-  </ul>
-</details>
+  ```bash
+  - Git(version control)
+  ```
 
 <!-- Features -->
 
@@ -99,9 +94,9 @@ After you're finished please remove all the comments and instructions!
 
 > Describe between 1-3 key features of the application.
 
-- **[key_feature_1]**
-- **[key_feature_2]**
-- **[key_feature_3]**
+- **[Search for Different company on the stock market]**
+- **[Check thier Stock statement]**
+- **[A direct Link to their official webpage]**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -109,9 +104,9 @@ After you're finished please remove all the comments and instructions!
 
 ## 🚀 Live Demo <a name="live-demo"></a>
 
-> Add a link to your deployed project.
 
-- [Live Demo Link](https://google.com)
+- [Live Demo](https://share-market.netlify.app/)
+- [Presentation Video]()
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -119,85 +114,40 @@ After you're finished please remove all the comments and instructions!
 
 ## 💻 Getting Started <a name="getting-started"></a>
 
-> Describe how a new developer could make use of your project.
-
-To get a local copy up and running, follow these steps.
+To get a local copy up and running follow these simple example steps.
 
 ### Prerequisites
 
-In order to run this project you need:
-
-<!--
-Example command:
-
-```sh
- gem install rails
-```
- -->
-
-### Setup
-
-Clone this repository to your desired folder:
-
-<!--
-Example commands:
-
-```sh
-  cd my-folder
-  git clone git@github.com:myaccount/my-project.git
-```
---->
+- A text editor(preferably Visual Studio Code)
 
 ### Install
 
-Install this project with:
-
-<!--
-Example command:
-
-```sh
-  cd my-project
-  gem install
-```
---->
+- [Git](https://git-scm.com/downloads)
+- [Node](https://nodejs.org/en/download/)
 
 ### Usage
 
-To run the project, execute the following command:
+#### Clone this repository
 
-<!--
-Example command:
-
-```sh
-  rails server
+```bash
+$ git clone https://github.com/cabraham1/sharemarket.git
+$ cd stuk-mart
 ```
---->
 
-### Run tests
+#### Run project
 
-To run tests, run the following command:
-
-<!--
-Example command:
-
-```sh
-  bin/rails test test/models/article_test.rb
+```bash
+$ npm install
+$ npm build
+$ npm run test
+$ npm start
 ```
---->
 
-### Deployment
+#### Open page in browser
 
-You can deploy this project using:
-
-<!--
-Example:
-
-```sh
-
+```bash
+$ runs on http://localhost:3000/
 ```
- -->
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- AUTHORS -->
 
@@ -207,15 +157,10 @@ Example:
 
 👤 **Author1**
 
-- GitHub: [@githubhandle](https://github.com/githubhandle)
-- Twitter: [@twitterhandle](https://twitter.com/twitterhandle)
-- LinkedIn: [LinkedIn](https://linkedin.com/in/linkedinhandle)
+- GitHub: [@githubhandle](https://github.com/cabraham1)
+- Twitter: [@twitterhandle](https://twitter.com/_cabraham)
+- LinkedIn: [LinkedIn](https://linkedin.com/in/abrahamchristopher)
 
-👤 **Author2**
-
-- GitHub: [@githubhandle](https://github.com/githubhandle)
-- Twitter: [@twitterhandle](https://twitter.com/twitterhandle)
-- LinkedIn: [LinkedIn](https://linkedin.com/in/linkedinhandle)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -223,11 +168,9 @@ Example:
 
 ## 🔭 Future Features <a name="future-features"></a>
 
-> Describe 1 - 3 features you will add to the project.
-
-- [ ] **[new_feature_1]**
-- [ ] **[new_feature_2]**
-- [ ] **[new_feature_3]**
+- [ ] **To add new Startup to the stock Market**
+- [ ] **To display real tim stock exchange**
+- [ ] **To be able to Buy share in real time**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -237,7 +180,7 @@ Example:
 
 Contributions, issues, and feature requests are welcome!
 
-Feel free to check the [issues page](../../issues/).
+Feel free to check the [issues page](https://github.com/Cabraham1/Share-market/issues).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -253,35 +196,20 @@ If you like this project...
 
 <!-- ACKNOWLEDGEMENTS -->
 
-## 🙏 Acknowledgments <a name="acknowledgements"></a>
+## Acknowledgement
 
-> Give credit to everyone who inspired your codebase.
-
-I would like to thank...
+Original design idea by [Nelson Sakwa on Behance..](https://www.behance.net/gallery/31579789/Ballhead-App-%28Free-PSDs%29) Under the [Creative Commons License](https://creativecommons.org/licenses/by-nc/4.0/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- FAQ (optional) -->
 
-## ❓ FAQ (OPTIONAL) <a name="faq"></a>
-
-> Add at least 2 questions new developers would ask when they decide to use your project.
-
-- **[Question_1]**
-
-  - [Answer_1]
-
-- **[Question_2]**
-
-  - [Answer_2]
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- LICENSE -->
 
 ## 📝 License <a name="license"></a>
 
-This project is [MIT](./LICENSE) licensed.
+This project is [MIT](./MIT.md) licensed.
 
 _NOTE: we recommend using the [MIT license](https://choosealicense.com/licenses/mit/) - you can set it up quickly by [using templates available on GitHub](https://docs.github.com/en/communities/setting-up-your-project-for-healthy-contributions/adding-a-license-to-a-repository). You can also use [any other license](https://choosealicense.com/licenses/) if you wish._
 
