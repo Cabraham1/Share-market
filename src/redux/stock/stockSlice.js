@@ -7,27 +7,26 @@ const RESET_STOCK = 'stocks-market-trends/stocks/RESET_STOCK';
 const API_URL = 'https://financialmodelingprep.com/api/v3/';
 const API_KEY = '8b7a7c786c82524206f6568bdebdecec';
 
+// Stock actions
 const initialState = {
   stockData: [],
-  companyDetails: {},
-  companyStatements: {},
-  filteredCompany: {},
-  loading: false,
-  error: null,
+  details: [],
+  statement: [],
+  filtered: [],
 };
+
+export const getStockData = (payload) => ({
+  type: GET_STOCK_DATA,
+  payload,
+});
 
 export const getCompanyDetails = (payload) => ({
   type: GET_COMPANY_DETAILS,
   payload,
 });
 
-export const getCompanyStatements = (payload) => ({
+export const getCompanyStatement = (payload) => ({
   type: GET_COMPANY_STATEMENTS,
-  payload,
-});
-
-export const getStockData = (payload) => ({
-  type: GET_STOCK_DATA,
   payload,
 });
 
@@ -58,7 +57,7 @@ export const fetchCompanyStatements = (companyId) => async (dispatch) => {
       `${API_URL}income-statement/${companyId}?limit=120&apikey=${API_KEY}`,
     );
     const result = await response.json();
-    dispatch(getCompanyStatements(result));
+    dispatch(getCompanyStatement(result));
   } catch (err) {
     throw new Error(err);
   }
@@ -88,30 +87,28 @@ export const fetchStockData = () => async (dispatch) => {
   }
 };
 
-//   Reducer
+// REDUCER
 
 const stockDataReducer = (state = initialState, { type, payload }) => {
   switch (type) {
+    case GET_STOCK_DATA:
+      return { ...state, stockData: [...payload] };
+
     case GET_COMPANY_DETAILS:
       return { ...state, details: [...payload] };
 
     case GET_COMPANY_STATEMENTS:
       return { ...state, statement: [...payload] };
-
-    case GET_STOCK_DATA:
-      return { ...state, stocksData: [...payload] };
-
     case RESET_STOCK:
       return { ...state, statement: [], details: [] };
-
     case FILTER_COMPANY:
       if (payload === '') {
-        return { ...state, filtered: [...state.stocksData] };
+        return { ...state, filtered: [...state.stockData] };
       }
       return {
         ...state,
         filtered: [
-          ...state.stocksData.filter(({ companyName }) => companyName
+          ...state.stockData.filter(({ companyName }) => companyName
             .toLowerCase().includes(payload.toLowerCase())),
         ],
       };
