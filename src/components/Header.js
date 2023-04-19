@@ -4,7 +4,7 @@ import Search from './Search';
 
 const Header = () => (
   <header>
-    <div className="navbar1">
+    <div className="navbar">
       <h3>Share Market</h3>
     </div>
     <Search />
