@@ -65,17 +65,21 @@ export const fetchCompanyStatements = (companyId) => async (dispatch) => {
 
 export const fetchStockData = () => async (dispatch) => {
   try {
-    const response = await fetch(`${API_URL}stock_market/actives?limit=20&apikey=${API_KEY}`);
+    const response = await fetch(
+      `${API_URL}stock_market/actives?limit=20&apikey=${API_KEY}`,
+    );
     const result = await response.json();
-    const data = result.map(({
-      symbol, name, change, price, changesPercentage,
-    }) => ({
-      id: symbol,
-      change,
-      companyName: name,
-      price,
-      changesPercentage,
-    }));
+    const data = result.map(
+      ({
+        symbol, name, change, price, changesPercentage,
+      }) => ({
+        id: symbol,
+        change,
+        companyName: name,
+        price,
+        changesPercentage,
+      }),
+    );
 
     dispatch(getStockData(data));
   } catch (err) {
@@ -84,31 +88,29 @@ export const fetchStockData = () => async (dispatch) => {
 };
 
 // REDUCER
+
 const stockDataReducer = (state = initialState, { type, payload }) => {
   switch (type) {
     case GET_STOCK_DATA:
       return { ...state, stockData: [...payload] };
 
     case GET_COMPANY_DETAILS:
-    case GET_COMPANY_STATEMENTS:
-      return {
-        ...state,
-        [type === GET_COMPANY_DETAILS ? 'details' : 'statement']: [...payload],
-      };
+      return { ...state, details: [...payload] };
 
+    case GET_COMPANY_STATEMENTS:
+      return { ...state, statement: [...payload] };
     case RESET_STOCK:
       return { ...state, statement: [], details: [] };
-
     case FILTER_COMPANY:
+      if (payload === '') {
+        return { ...state, filtered: [...state.stockData] };
+      }
       return {
         ...state,
-        filtered:
-          payload === ''
-            ? [...state.stockData]
-            : [
-              // eslint-disable-next-line max-len
-              ...state.stockData.filter(({ companyName }) => companyName.toLowerCase().includes(payload.toLowerCase())),
-            ],
+        filtered: [
+          ...state.stockData.filter(({ companyName }) => companyName
+            .toLowerCase().includes(payload.toLowerCase())),
+        ],
       };
 
     default:
